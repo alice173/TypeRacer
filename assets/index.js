@@ -64,6 +64,9 @@ function stopTest() {
   const difficulty = document.getElementById("difficulty").value;
   document.getElementById("level").textContent =
     difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+
+  document.getElementById("highlighted-text").innerHTML = "";
+  document.getElementById("highlighted-text").style.display = "none";
 }
 
 function calculateCorrectWords(userInput, sampleText) {
@@ -104,7 +107,9 @@ function highlightText() {
     }
   }
 
-  document.getElementById("user-input").innerHTML = highlightedText.trim();
+  document.getElementById("highlighted-text").innerHTML =
+    highlightedText.trim();
+  document.getElementById("highlighted-text").style.display = "block";
 }
 
 document.getElementById("user-input").addEventListener("input", highlightText);
