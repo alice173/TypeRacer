@@ -30,3 +30,33 @@ document.addEventListener("DOMContentLoaded", () => {
   difficultySelect.addEventListener("change", updateSampleText);
   updateSampleText();
 });
+
+let startTime, endTime;
+
+function startTest() {
+  startTime = new Date();
+  document.getElementById("start-btn").disabled = true;
+  document.getElementById("stop-btn").disabled = false;
+  document.getElementById("user-input").value = "";
+  document.getElementById("user-input").focus();
+}
+
+function stopTest() {
+  endTime = new Date();
+  const timeTaken = (endTime - startTime) / 1000; // time in seconds
+  document.getElementById("time").textContent = timeTaken.toFixed(2);
+  document.getElementById("start-btn").disabled = true;
+  document.getElementById("stop-btn").disabled = true;
+}
+
+function retryTest() {
+  document.getElementById("time").textContent = "0.00";
+  document.getElementById("start-btn").disabled = false;
+  document.getElementById("stop-btn").disabled = true;
+  document.getElementById("retry-btn").disabled = true;
+  document.getElementById("user-input").value = "";
+}
+
+document.getElementById("start-btn").addEventListener("click", startTest);
+document.getElementById("stop-btn").addEventListener("click", stopTest);
+document.getElementById("retry-btn").addEventListener("click", retryTest);
